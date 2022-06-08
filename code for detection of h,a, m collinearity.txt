@@ -1,0 +1,3300 @@
+
+df<-read.csv(file.choose(),header = T)
+str(df)
+df$water.stations<-factor(df$water.stations)
+df1<-df[,-2]
+year<-c(2011:2020)
+month<-rep(1,times=10)
+day<-rep(1, 10)
+df<-cbind.data.frame(year,month,day, df1)
+ss<-paste0(year,"-", month, "-", day)
+ss
+class(ss)
+ss1<-as.Date(ss, "%Y-%m-%d")
+
+library(xts)
+
+ss2<-function(x){
+  return(xts(x, ss1))
+}
+
+levels(df1$water.stations)
+colnames(df1)
+library(dplyr)
+
+#############################alladpur##############################################
+
+ws1<-df1%>%filter(water.stations == "Alladpur")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+######################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid1<-ss2(fit1$residuals)
+library("forecast")
+tsm1<-auto.arima(resid1)
+tsm1
+forecast(tsm1, 1)
+
+
+###################################Amreshwar##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Amreshwar")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid2<-ss2(fit1$residuals)
+library("forecast")
+tsm2<-auto.arima(resid2)
+tsm2
+forecast(tsm2, 1)
+
+
+
+
+###################################Asala##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Asala")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid3<-ss2(fit1$residuals)
+library("forecast")
+tsm3<-auto.arima(resid3)
+tsm3
+forecast(tsm3, 1)
+
+
+
+
+
+
+
+###################################Asar##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Asar")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid4<-ss2(fit1$residuals)
+library("forecast")
+tsm4<-auto.arima(resid4)
+tsm4
+forecast(tsm4, 1)
+
+
+###################################Baladgam##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Baladgam")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid5<-ss2(fit1$residuals)
+library("forecast")
+tsm5<-auto.arima(resid5)
+tsm5
+forecast(tsm5, 1)
+
+
+
+###################################Bhindol##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Bhindol")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid6<-ss2(fit1$residuals)
+library("forecast")
+tsm6<-auto.arima(resid6)
+tsm6
+forecast(tsm6, 1)
+
+
+###################################Bodeli##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Bodeli")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid7<-ss2(fit1$residuals)
+library("forecast")
+tsm7<-auto.arima(resid7)
+tsm7
+forecast(tsm7, 1)
+
+
+
+
+###################################Chavaria##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Chavaria")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid8<-ss2(fit1$residuals)
+library("forecast")
+tsm8<-auto.arima(resid8)
+tsm8
+forecast(tsm8, 1)
+
+###################################Chella Karamsiya Pz##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Chella Karamsiya Pz")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid9<-ss2(fit1$residuals)
+library("forecast")
+tsm9<-auto.arima(resid9)
+tsm9
+forecast(tsm9, 1)
+
+
+
+###################################Chhaliyar##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Chhaliyar")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid10<-ss2(fit1$residuals)
+library("forecast")
+tsm10<-auto.arima(resid10)
+tsm10
+forecast(tsm10, 1)
+
+
+
+###################################Chhota udepur##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Chhota udepur")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid11<-ss2(fit1$residuals)
+library("forecast")
+tsm11<-auto.arima(resid11)
+tsm11
+forecast(tsm11, 1)
+
+
+
+###################################Chisadia##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Chisadia")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid12<-ss2(fit1$residuals)
+library("forecast")
+tsm12<-auto.arima(resid12)
+tsm12
+forecast(tsm12, 1)
+
+
+
+###################################Chitral PZ_II##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Chitral PZ_II")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+
+###################################Chitral Pz-I##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Chitral Pz-I")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid14<-ss2(fit1$residuals)
+library("forecast")
+tsm14<-auto.arima(resid14)
+tsm14
+forecast(tsm14, 1)
+
+
+###################################Chota udepur##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Chota udepur")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid15<-ss2(fit1$residuals)
+library("forecast")
+tsm15<-auto.arima(resid15)
+tsm15
+forecast(tsm15, 1)
+
+
+
+
+###################################Devat (thadgam)#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Devat (thadgam)")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid16<-ss2(fit1$residuals)
+library("forecast")
+tsm16<-auto.arima(resid16)
+tsm16
+forecast(tsm16, 1)
+
+##################################Ferkuva#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Ferkuva")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid17<-ss2(fit1$residuals)
+library("forecast")
+tsm17<-auto.arima(resid17)
+tsm17
+forecast(tsm17, 1)
+
+
+
+##################################Ghamodi#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Ghamodi")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid18<-ss2(fit1$residuals)
+library("forecast")
+tsm18<-auto.arima(resid18)
+tsm18
+forecast(tsm18, 1)
+
+
+
+
+##################################Ghayaj ii#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Ghayaj ii")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid19<-ss2(fit1$residuals)
+library("forecast")
+tsm19<-auto.arima(resid19)
+tsm19
+forecast(tsm19, 1)
+
+
+
+
+
+##################################Govindpura#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Govindpura")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid20<-ss2(fit1$residuals)
+library("forecast")
+tsm20<-auto.arima(resid20)
+tsm20
+forecast(tsm20, 1)
+
+
+
+
+
+###################################Handod1##############################################
+
+ws1<-df1%>%filter(water.stations == "Handod1")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid21<-ss2(fit1$residuals)
+library("forecast")
+tsm21<-auto.arima(resid21)
+tsm21
+forecast(tsm21, 1)
+
+
+###################################Handod2##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Handod2")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid22<-ss2(fit1$residuals)
+library("forecast")
+tsm22<-auto.arima(resid22)
+tsm22
+forecast(tsm22, 1)
+
+
+
+
+###################################Jojh##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Jojh")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid23<-ss2(fit1$residuals)
+library("forecast")
+tsm23<-auto.arima(resid23)
+tsm23
+forecast(tsm23, 1)
+
+
+
+
+
+
+
+###################################Juna samalya##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Juna samalya")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid24<-ss2(fit1$residuals)
+library("forecast")
+tsm24<-auto.arima(resid24)
+tsm24
+forecast(tsm24, 1)
+
+
+###################################Kaprali##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Kaprali")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid25<-ss2(fit1$residuals)
+library("forecast")
+tsm25<-auto.arima(resid25)
+tsm25
+forecast(tsm25, 1)
+
+
+
+###################################Karamasiya##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Karamasiya")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid26<-ss2(fit1$residuals)
+library("forecast")
+tsm26<-auto.arima(resid26)
+tsm26
+forecast(tsm26, 1)
+
+
+###################################Kevadi##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Kevadi")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid27<-ss2(fit1$residuals)
+library("forecast")
+tsm27<-auto.arima(resid27)
+tsm27
+forecast(tsm27, 1)
+
+
+
+
+###################################Kosindra Pz-I##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Kosindra Pz-I")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid28<-ss2(fit1$residuals)
+library("forecast")
+tsm28<-auto.arima(resid28)
+tsm28
+forecast(tsm28, 1)
+
+###################################Makni##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Makni")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid29<-ss2(fit1$residuals)
+library("forecast")
+tsm29<-auto.arima(resid29)
+tsm29
+forecast(tsm29, 1)
+
+
+
+###################################Masor##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Masor")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid30<-ss2(fit1$residuals)
+library("forecast")
+tsm30<-auto.arima(resid30)
+tsm30
+forecast(tsm30, 1)
+
+
+
+###################################Moti chikhali##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Moti chikhali")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid31<-ss2(fit1$residuals)
+library("forecast")
+tsm31<-auto.arima(resid31)
+tsm31
+forecast(tsm31, 1)
+
+
+
+###################################Panwad##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Panwad")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid32<-ss2(fit1$residuals)
+library("forecast")
+tsm32<-auto.arima(resid32)
+tsm32
+forecast(tsm32, 1)
+
+
+
+###################################Patiyapura##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Patiyapura")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid33<-ss2(fit1$residuals)
+library("forecast")
+tsm33<-auto.arima(resid33)
+tsm33
+forecast(tsm33, 1)
+
+
+
+###################################Pavi##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Pavi")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid34<-ss2(fit1$residuals)
+library("forecast")
+tsm34<-auto.arima(resid34)
+tsm34
+forecast(tsm34, 1)
+
+
+###################################Pitha##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Pitha")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid35<-ss2(fit1$residuals)
+library("forecast")
+tsm35<-auto.arima(resid35)
+tsm35
+forecast(tsm35, 1)
+
+
+
+
+###################################Rasulpur#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Rasulpur")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid36<-ss2(fit1$residuals)
+library("forecast")
+tsm36<-auto.arima(resid36)
+tsm36
+forecast(tsm36, 1)
+
+##################################Raypura i#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Raypura i")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid37<-ss2(fit1$residuals)
+library("forecast")
+tsm37<-auto.arima(resid37)
+tsm37
+forecast(tsm37, 1)
+
+
+
+##################################Saidal#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Saidal")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid38<-ss2(fit1$residuals)
+library("forecast")
+tsm38<-auto.arima(resid38)
+tsm38
+forecast(tsm38, 1)
+
+
+
+
+##################################Saidivasana#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Saidivasana")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid39<-ss2(fit1$residuals)
+library("forecast")
+tsm39<-auto.arima(resid39)
+tsm39
+forecast(tsm39, 1)
+
+
+
+
+
+##################################Sankarda#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Sankarda")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid40<-ss2(fit1$residuals)
+library("forecast")
+tsm40<-auto.arima(resid40)
+tsm40
+forecast(tsm40, 1)
+
+
+##################################Sankarda1##############################################
+
+ws1<-df1%>%filter(water.stations == "Sankarda1")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid41<-ss2(fit1$residuals)
+library("forecast")
+tsm41<-auto.arima(resid41)
+tsm41
+forecast(tsm41, 1)
+
+
+###################################Sankheda##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Sankheda")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid42<-ss2(fit1$residuals)
+library("forecast")
+tsm42<-auto.arima(resid42)
+tsm42
+forecast(tsm42, 1)
+
+
+
+###################################Segwa chouki ii##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Segwa chouki ii")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid43<-ss2(fit1$residuals)
+library("forecast")
+tsm43<-auto.arima(resid43)
+tsm43
+forecast(tsm43, 1)
+
+
+
+
+
+
+
+###################################Segwa chowki I##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Segwa chowki I")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid44<-ss2(fit1$residuals)
+library("forecast")
+tsm44<-auto.arima(resid44)
+tsm44
+forecast(tsm44, 1)
+
+
+###################################Sengpur##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Sengpur")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid45<-ss2(fit1$residuals)
+library("forecast")
+tsm45<-auto.arima(resid45)
+tsm45
+forecast(tsm45, 1)
+
+
+
+###################################Sinor##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Sinor")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid46<-ss2(fit1$residuals)
+library("forecast")
+tsm46<-auto.arima(resid46)
+tsm46
+forecast(tsm46, 1)
+
+
+###################################Suskal##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Suskal")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid47<-ss2(fit1$residuals)
+library("forecast")
+tsm47<-auto.arima(resid47)
+tsm47
+forecast(tsm47, 1)
+
+
+
+
+###################################Tokri##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Tokri")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid48<-ss2(fit1$residuals)
+library("forecast")
+tsm48<-auto.arima(resid48)
+tsm48
+forecast(tsm48, 1)
+
+###################################Tundav##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Tundav")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid49<-ss2(fit1$residuals)
+library("forecast")
+tsm49<-auto.arima(resid49)
+tsm49
+forecast(tsm49, 1)
+
+
+
+###################################Vadodara I##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vadodara I")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid50<-ss2(fit1$residuals)
+library("forecast")
+tsm50<-auto.arima(resid50)
+tsm50
+forecast(tsm50, 1)
+
+###################################Vadodara Ii##############################################
+
+ws1<-df1%>%filter(water.stations == "Vadodara Ii")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid51<-ss2(fit1$residuals)
+library("forecast")
+tsm51<-auto.arima(resid51)
+tsm51
+forecast(tsm51, 1)
+
+
+###################################Vadodara_Kevada Bag##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vadodara_Kevada Bag")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid52<-ss2(fit1$residuals)
+library("forecast")
+tsm52<-auto.arima(resid52)
+tsm52
+forecast(tsm52, 1)
+
+
+
+
+###################################Vadodara_ONGC##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vadodara_ONGC")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid53<-ss2(fit1$residuals)
+library("forecast")
+tsm53<-auto.arima(resid53)
+tsm53
+forecast(tsm53, 1)
+
+
+
+
+
+
+
+###################################Vadodara_Sama##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vadodara_Sama")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid54<-ss2(fit1$residuals)
+library("forecast")
+tsm54<-auto.arima(resid54)
+tsm54
+forecast(tsm54, 1)
+
+
+###################################Vadshala Pzi##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vadshala Pzi")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid55<-ss2(fit1$residuals)
+library("forecast")
+tsm55<-auto.arima(resid55)
+tsm55
+forecast(tsm55, 1)
+
+
+
+###################################Vadshala Pz-II#############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vadshala Pz-II")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid56<-ss2(fit1$residuals)
+library("forecast")
+tsm56<-auto.arima(resid56)
+tsm56
+forecast(tsm56, 1)
+
+
+###################################Vadtalav Pz##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vadtalav Pz")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid57<-ss2(fit1$residuals)
+library("forecast")
+tsm57<-auto.arima(resid57)
+tsm57
+forecast(tsm57, 1)
+
+
+
+
+###################################Vagudan##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vagudan")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid58<-ss2(fit1$residuals)
+library("forecast")
+tsm58<-auto.arima(resid58)
+tsm58
+forecast(tsm58, 1)
+
+###################################Vega##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vega")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid59<-ss2(fit1$residuals)
+library("forecast")
+tsm59<-auto.arima(resid59)
+tsm59
+forecast(tsm59, 1)
+
+
+
+###################################Vejpur1##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Vejpur1")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid60<-ss2(fit1$residuals)
+library("forecast")
+tsm60<-auto.arima(resid60)
+tsm60
+forecast(tsm60, 1)
+
+
+
+
+
+###################################Vejpur2##############################################
+
+ws1<-df1%>%filter(water.stations == "Vejpur2")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid61<-ss2(fit1$residuals)
+library("forecast")
+tsm61<-auto.arima(resid61)
+tsm61
+forecast(tsm61, 1)
+
+################Waghach###############
+
+
+ws1<-df1%>%filter(water.stations == "Waghach")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+#########################################################################################
+resid62<-ss2(fit1$residuals)
+library("forecast")
+tsm62<-auto.arima(resid62)
+tsm62
+forecast(tsm62, 1)
+
+
+
+
+###################################Waghodia Pz##############################################
+
+
+ws1<-df1%>%filter(water.stations == "Waghodia Pz")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test####################################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+#########################################################################################
+resid63<-ss2(fit1$residuals)
+library("forecast")
+tsm63<-auto.arima(resid63)
+tsm63
+forecast(tsm63, 1)
+
+
+###################################Wankaner2##############################################
+
+ws1<-df1%>%filter(water.stations == "Wankaner2")%>%select(-water.stations)
+ws1
+###############autocorl#############################
+fit1<-lm(water.level ~ ., data = ws1)
+library(car)
+durbinWatsonTest(fit1)
+summary(fit1)
+#################heteroscedasticity #####################################################
+########################white test######################################################
+library(lmtest)
+fit2<-lm(water.level ~. , data = ws1)
+fit2
+summary(fit2)
+bptest(fit2)
+bptest(fit2, ~ fitted(fit2) + I(fitted(fit2)^2))
+###########################multicolinearity ######################################
+library(faraway)
+round(cor(ws1),2)
+fit3<-lm(water.level ~. ,  ws1)
+fit3
+summary(fit3)
+vif(fit3)
+##############################ADF test#############################################
+library("tseries")
+attach(ws1)
+adf.test(PS)
+adf.test(TS)
+adf.test(QV2M)
+adf.test(WS2M)
+adf.test(pre)
+adf.test(post)
+adf.test(rainfall)
+adf.test(water.level)
+
+####################################################################################
+resid64<-ss2(fit1$residuals)
+library("forecast")
+tsm64<-auto.arima(resid64)
+tsm64
+forecast(tsm64, 1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
